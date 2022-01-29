@@ -1,13 +1,11 @@
 import {View, FlatList, Text} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {PRODUCTS} from '../../data/products';
+import {PRODUCTS} from '../../utils/data/products';
 import {ProductItem} from '../../components/ProductItem';
 
 export const Products = ({navigation, route}) => {
   const productList = PRODUCTS.filter(prod => prod.category == route.params.name)
-  console.log(route.params.name);
-  console.log(productList);
 
   const handleSelectedProduct = (item) => {
     navigation.navigate('ProductDetail', {

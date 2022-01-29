@@ -1,7 +1,7 @@
 import {FlatList, SafeAreaView} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {CATEGORIES} from '../../data/categories';
+import { CATEGORIES } from '../../utils/data/categories';
 import {CategoryItem} from '../../components/categoryItem';
 
 export const Categories = ({navigation}) => {
