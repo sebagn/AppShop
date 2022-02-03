@@ -6,18 +6,20 @@ import {
   selectProduct,
   filterProducts,
 } from '../../store/actions/products.action';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 export const Products = ({navigation}) => {
   const dispatch = useDispatch();
   const category = useSelector(state => state.categories.selected);
-
-  useEffect(() => {
-    dispatch(filterProducts(category.id));
-  }, []);
   const categoryProducts = useSelector(
     state => state.products.filteredProducts,
   );
+
+  useEffect(() => {
+    dispatch(filterProducts(category.title));
+    console.log(category);
+    console.log(categoryProducts);
+  }, []);
 
   const handleSelectedProduct = item => {
     dispatch(selectProduct(item.id));

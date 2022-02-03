@@ -1,7 +1,7 @@
 export const actionTypes = {
-    filter_products : 'FILTER_PRODUCTS',
-    select_product : 'SELECT_PRODUCT'
-}
+  filter_products: 'FILTER_PRODUCTS',
+  select_product: 'SELECT_PRODUCT',
+};
 
 export const filterProducts = category => ({
   type: actionTypes.filter_products,

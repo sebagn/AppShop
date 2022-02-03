@@ -4,7 +4,7 @@ import {actionTypes} from '../actions/products.action';
 const initialState = {
   products: PRODUCTS,
   filteredProducts: [],
-  selected: null,
+  selected: null
 };
 
 const ProductsReducer = (state = initialState, action) => {
@@ -14,7 +14,6 @@ const ProductsReducer = (state = initialState, action) => {
         ...state,
         filteredProducts: state.products.filter(prod => prod.category === action.payload)
       }
-
     case actionTypes.select_product:
       return {
         ...state,

@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styles from "./styles";
-import { CART } from "../../utils/data/cart";
+import { CARTDATA } from "../../utils/data/cartdata";
 import CartItem from "../../components/cart-item";
+
 const Cart = () => {
-    const items = CART;
+    const items = CARTDATA;
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     const handleConfirm = () => {

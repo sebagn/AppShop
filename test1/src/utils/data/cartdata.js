@@ -1,4 +1,4 @@
-export const CART = [
+export const CARTDATA = [
   {
     id: Math.random(),
     category: 'XIAOMI',
