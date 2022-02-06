@@ -1,27 +1,27 @@
 import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+import {Button, Text, View} from 'react-native';
+import { useDispatch } from 'react-redux';
+import { deleteOrder } from '../../store/actions/orders.action';
 import styles from './styles';
 
-const OrderItem = ({item}) => {
-  const formatDate = (time) => {
-    const date = new Date(time);
-    return date.toLocaleDateString();
-  }
+const OrderItem = ({item}) => { 
+  const dispatch = useDispatch()
+  const handleDeleteOrder = orderID => {
+    dispatch(deleteOrder(orderID))
+  };
+
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-            <Text style={styles.date}>{formatDate(item.date)}</Text>
-        </View>
-        <View style={styles.details}>
-          <Text>$ {item.total}</Text>
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.title}>Order: {item.orderID}</Text>
+      </View>
+      <View style={styles.details}>
+        <Text>User: {item.user}</Text>
+        <Text>$ {item.total}</Text>
+        <Button title="RM" onPress={() => handleDeleteOrder(item.orderID)} />
+      </View>
     </View>
   );
 };
-
-
 
 export default OrderItem;

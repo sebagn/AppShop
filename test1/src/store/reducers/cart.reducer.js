@@ -30,6 +30,12 @@ const CartReducer = (state = initialState, action) => {
       };
 
     case actionTypes.remove_item:
+      let filteredCart = state.items.filter(item => item.id !== action.payload)
+      return {
+        ...state,
+        items: filteredCart,
+        total: sumTotal(filteredCart),
+      };
 
     case actionTypes.confirm_cart:
 

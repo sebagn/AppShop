@@ -1,20 +1,25 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Button } from "react-native";
 import styles from "./styles";
-import { CARTDATA } from "../../utils/data/cartdata";
 import CartItem from "../../components/cart-item";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem, confirmCart } from "../../store/actions/cart.action";
 
-const Cart = () => {
+const CartScreen = ({navigation}) => {
+    const dispatch = useDispatch()
     const items = useSelector(state => state.cart.items);
     const total = useSelector(state => state.cart.total);
 
     const handleConfirm = () => {
-        console.warn("Confirmar compra");
+        dispatch(confirmCart(items, total))
+
+    }
+    const handleNavigate = () => {
+        navigation.navigate('Orders')
     }
 
     const handleDelete = (id) => {
-        console.warn("Eliminar item", id);
+        dispatch(removeItem(id))
     }
 
     const renderItems = (data) => (
@@ -30,16 +35,17 @@ const Cart = () => {
                 />
             </View>
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.confirm} onPress={() => handleConfirm()}>
+                <TouchableOpacity style={styles.confirm} onPress={handleConfirm}>
                     <Text>Confirmar</Text>
                     <View style={styles.total}>
                         <Text style={styles.text}>Total:</Text>
                         <Text style={styles.text}>${total}</Text>
                     </View>
                 </TouchableOpacity>
+                <Button title="orders" onPress={handleNavigate}/>
             </View>
         </View>
     )
 }
 
-export default Cart;
+export default CartScreen;

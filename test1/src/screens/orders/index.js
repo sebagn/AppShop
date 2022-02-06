@@ -1,27 +1,31 @@
-import React from "react";
-import { View, FlatList } from "react-native";
-import styles from "./styles";
-import { ORDERS } from '../../utils/data/orders';
-import OrderItem from "../../components/order-item";
+import React, {useEffect} from 'react';
+import {View, FlatList} from 'react-native';
+import styles from './styles';
+import OrderItem from '../../components/order-item';
+
+import {useDispatch, useSelector} from 'react-redux';
+import {getOrders} from '../../store/actions/orders.action';
 
 const Orders = () => {
-    const items = ORDERS;
+  const dispatch = useDispatch();
+  const orderList = useSelector(state => state.orders.orderList);
 
-
-    const renderItems = (data) => (
-        <OrderItem item={data.item} />
-    )
-    return (
-        <View style={styles.container}>
-            <View style={styles.list}>
-                <FlatList
-                    data={items}
-                    renderItem={renderItems}
-                    keyExtractor={(item) => item.id}
-                />
-            </View>
-        </View>
-    )
-}
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+  
+  const renderItems = data => <OrderItem item={data.item} />;
+  return (
+    <View style={styles.container}>
+      <View style={styles.list}>
+        <FlatList
+          data={orderList}
+          renderItem={renderItems}
+          keyExtractor={item => item.orderID}
+        />
+      </View>
+    </View>
+  );
+};
 
 export default Orders;
