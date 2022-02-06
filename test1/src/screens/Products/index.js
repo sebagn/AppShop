@@ -17,8 +17,6 @@ export const Products = ({navigation}) => {
 
   useEffect(() => {
     dispatch(filterProducts(category.title));
-    console.log(category);
-    console.log(categoryProducts);
   }, []);
 
   const handleSelectedProduct = item => {

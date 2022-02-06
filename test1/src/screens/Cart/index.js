@@ -3,10 +3,11 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { CARTDATA } from "../../utils/data/cartdata";
 import CartItem from "../../components/cart-item";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-    const items = CARTDATA;
-    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const items = useSelector(state => state.cart.items);
+    const total = useSelector(state => state.cart.total);
 
     const handleConfirm = () => {
         console.warn("Confirmar compra");
